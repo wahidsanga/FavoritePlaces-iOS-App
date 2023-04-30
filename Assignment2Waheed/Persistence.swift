@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+/// data persistence is maintained through persistence Handler
 struct PersistenceHandler{
     static let shared=PersistenceHandler()
     let container:NSPersistentContainer

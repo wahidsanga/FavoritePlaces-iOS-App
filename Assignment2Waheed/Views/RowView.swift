@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// displays each row of the Places List on the the master with and includes an image icon plus the name of the place
 struct RowView: View {
     @ObservedObject var place: Place
     @State var image = defaultImage

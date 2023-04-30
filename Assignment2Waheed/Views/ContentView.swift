@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+/// the master view
 struct ContentView: View {
+    /// managed object context represents a single object space, or scratch pad, in a Core Data application
     @Environment(\.managedObjectContext) var ctx
     @FetchRequest(sortDescriptors: []) var places:FetchedResults<Place>
     var body: some View {
@@ -29,12 +31,9 @@ struct ContentView: View {
                     addPlace()}, trailing: EditButton())
             }
         }
-//        .onAppear{saveData()}
-//            .onDisappear{
-//                saveData()
-//            }
     }
     
+    /// this function adds a new Place instance and saves in in the database
     func addPlace(){
         let place=Place(context: ctx)
         place.name="New Place"

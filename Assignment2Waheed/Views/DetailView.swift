@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+/// the DetailView displays all the data associated with a place including its description, image url, latitude and longitude
 struct DetailView: View {
     @ObservedObject var place: Place
     @State var name = ""

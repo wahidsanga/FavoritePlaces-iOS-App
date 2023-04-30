@@ -13,6 +13,7 @@ let defaultImage=Image(systemName: "photo").resizable()
 var downloadImages: [URL:Image] = [:]
 
 extension Place{
+    /// encapsulating variables inside the class
     var strName:String{
         get{
             self.name ?? "unknown"
@@ -56,9 +57,9 @@ extension Place{
             self.imgurl=url
         }
     }
-//    var rowDisplay:String{
-//        "Name: \(self.strName) (age:\(self.strAge))"
-//    }
+    
+    /// function to store image url and return image
+    /// - Returns: image
     func getImage() async -> Image{
         guard let url=self.imgurl else{return defaultImage}
         if let image=downloadImages[url] {return image}
@@ -75,6 +76,7 @@ extension Place{
     }
 }
 
+/// function to save data to the database
 func saveData(){
     let ctx=PersistenceHandler.shared.container.viewContext
     do{
