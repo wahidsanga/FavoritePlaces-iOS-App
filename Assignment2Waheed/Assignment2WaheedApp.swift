@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Assignment2WaheedApp: App {
+    var model=PersistenceHandler.shared
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environment(\.managedObjectContext, model.container.viewContext)
         }
     }
 }

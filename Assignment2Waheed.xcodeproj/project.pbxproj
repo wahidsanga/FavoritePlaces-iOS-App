@@ -14,6 +14,11 @@
 		3EE429F329FC20F200DFFA19 /* Assignment2WaheedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE429F229FC20F200DFFA19 /* Assignment2WaheedTests.swift */; };
 		3EE429FD29FC20F200DFFA19 /* Assignment2WaheedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE429FC29FC20F200DFFA19 /* Assignment2WaheedUITests.swift */; };
 		3EE429FF29FC20F200DFFA19 /* Assignment2WaheedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE429FE29FC20F200DFFA19 /* Assignment2WaheedUITestsLaunchTests.swift */; };
+		3EE42A0D29FC2C9C00DFFA19 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A0B29FC2C9B00DFFA19 /* Model.xcdatamodeld */; };
+		3EE42A0F29FC2E2D00DFFA19 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A0E29FC2E2D00DFFA19 /* Persistence.swift */; };
+		3EE42A1129FC307600DFFA19 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A1029FC307600DFFA19 /* ViewModel.swift */; };
+		3EE42A1329FC32FF00DFFA19 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A1229FC32FF00DFFA19 /* DetailView.swift */; };
+		3EE42A1529FD30C100DFFA19 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A1429FD30C100DFFA19 /* RowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		3EE429F829FC20F200DFFA19 /* Assignment2WaheedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment2WaheedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE429FC29FC20F200DFFA19 /* Assignment2WaheedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2WaheedUITests.swift; sourceTree = "<group>"; };
 		3EE429FE29FC20F200DFFA19 /* Assignment2WaheedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2WaheedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3EE42A0C29FC2C9C00DFFA19 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3EE42A0E29FC2E2D00DFFA19 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		3EE42A1029FC307600DFFA19 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		3EE42A1229FC32FF00DFFA19 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		3EE42A1429FD30C100DFFA19 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +108,11 @@
 				3EE429E329FC20F000DFFA19 /* ContentView.swift */,
 				3EE429E529FC20F200DFFA19 /* Assets.xcassets */,
 				3EE429E729FC20F200DFFA19 /* Preview Content */,
+				3EE42A0B29FC2C9B00DFFA19 /* Model.xcdatamodeld */,
+				3EE42A0E29FC2E2D00DFFA19 /* Persistence.swift */,
+				3EE42A1029FC307600DFFA19 /* ViewModel.swift */,
+				3EE42A1229FC32FF00DFFA19 /* DetailView.swift */,
+				3EE42A1429FD30C100DFFA19 /* RowView.swift */,
 			);
 			path = Assignment2Waheed;
 			sourceTree = "<group>";
@@ -257,8 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EE42A1129FC307600DFFA19 /* ViewModel.swift in Sources */,
+				3EE42A1329FC32FF00DFFA19 /* DetailView.swift in Sources */,
+				3EE42A1529FD30C100DFFA19 /* RowView.swift in Sources */,
 				3EE429E429FC20F000DFFA19 /* ContentView.swift in Sources */,
+				3EE42A0F29FC2E2D00DFFA19 /* Persistence.swift in Sources */,
 				3EE429E229FC20F000DFFA19 /* Assignment2WaheedApp.swift in Sources */,
+				3EE42A0D29FC2C9C00DFFA19 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +597,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3EE42A0B29FC2C9B00DFFA19 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3EE42A0C29FC2C9C00DFFA19 /* Model.xcdatamodel */,
+			);
+			currentVersion = 3EE42A0C29FC2C9C00DFFA19 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3EE429D629FC20F000DFFA19 /* Project object */;
 }
