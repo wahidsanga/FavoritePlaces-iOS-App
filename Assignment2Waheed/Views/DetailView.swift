@@ -35,7 +35,7 @@ struct DetailView: View {
             }else{
                 List{
                     TextField("New Name:", text: $name)
-                    TextField("Url:", text: $url)
+                    TextField("Enter image URL", text: $url)
                     Text("Enter Location Details:").font(.headline)
                     TextField("Loaction: ", text: $location)
                     VStack{
