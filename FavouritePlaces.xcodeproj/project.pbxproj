@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EB5A48C2A0811D3007D07A0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5A48B2A0811D3007D07A0 /* MapView.swift */; };
 		3EE429E229FC20F000DFFA19 /* Assignment2Waheed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE429E129FC20F000DFFA19 /* Assignment2Waheed.swift */; };
 		3EE429E429FC20F000DFFA19 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE429E329FC20F000DFFA19 /* ContentView.swift */; };
 		3EE429E629FC20F200DFFA19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EE429E529FC20F200DFFA19 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3EB5A48B2A0811D3007D07A0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		3EE429DE29FC20F000DFFA19 /* FavouritePlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FavouritePlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE429E129FC20F000DFFA19 /* Assignment2Waheed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2Waheed.swift; sourceTree = "<group>"; };
 		3EE429E329FC20F000DFFA19 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				3EE42A1429FD30C100DFFA19 /* RowView.swift */,
 				3EE429E329FC20F000DFFA19 /* ContentView.swift */,
 				3EE42A1229FC32FF00DFFA19 /* DetailView.swift */,
+				3EB5A48B2A0811D3007D07A0 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				3EE429E429FC20F000DFFA19 /* ContentView.swift in Sources */,
 				3EE42A0F29FC2E2D00DFFA19 /* Persistence.swift in Sources */,
 				3EE429E229FC20F000DFFA19 /* Assignment2Waheed.swift in Sources */,
+				3EB5A48C2A0811D3007D07A0 /* MapView.swift in Sources */,
 				3EE42A0D29FC2C9C00DFFA19 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

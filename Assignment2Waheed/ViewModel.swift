@@ -8,9 +8,13 @@
 import Foundation
 import CoreData
 import SwiftUI
+import MapKit
 
 let defaultImage=Image(systemName: "photo").resizable()
 var downloadImages: [URL:Image] = [:]
+var address = ""
+var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 100.0, longitudeDelta: 100.0))
+var delta = 100.0
 
 extension Place{
     /// encapsulating variables inside the class
@@ -30,22 +34,28 @@ extension Place{
             self.location=newValue
         }
     }
-    var strLatitude:String{
-        get{
-            "\(self.latitude)"
+    var strLongitude:String {
+        get {
+            String(format: "%.5f", longitude)
         }
-        set{
-            guard let latitude=Float(newValue) else{return}
-            self.latitude=latitude
+        set {
+            guard let long = Double(newValue), long <= 180.0, long >= -180.0
+            else {
+                return
+            }
+            longitude = long
         }
     }
-    var strLongitude:String{
-        get{
-            "\(self.longitude)"
+    var strLatitude:String {
+        get {
+            String(format: "%.5f", latitude)
         }
-        set{
-            guard let longitude=Float(newValue) else{return}
-            self.longitude=longitude
+        set {
+            guard let lat = Double(newValue), lat <= 90.0, lat >= -90.0
+            else {
+                return
+            }
+            latitude = lat
         }
     }
     var strUrl:String{
@@ -74,6 +84,11 @@ extension Place{
         }
         return defaultImage
     }
+    
+    func updateMap() {
+        region.center.latitude = latitude
+        region.center.longitude = longitude
+    }
 }
 
 /// function to save data to the database
@@ -84,4 +99,14 @@ func saveData(){
     }catch{
         print("Error to save with \(error)")
     }
+}
+
+func addPlace() {
+    let ctx = PersistenceHandler.shared.container.viewContext
+    let place = Place(context: ctx)
+    place.name = "New Place"
+    place.location = ""
+    place.latitude = 0.0
+    place.longitude = 0.0
+    saveData()
 }

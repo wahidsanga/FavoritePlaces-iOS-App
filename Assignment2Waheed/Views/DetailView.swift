@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import MapKit
 /// the DetailView displays all the data associated with a place including its description, image url, latitude and longitude
 struct DetailView: View {
     @ObservedObject var place: Place
@@ -17,7 +18,10 @@ struct DetailView: View {
     @State var latitude = ""
     @Environment(\.editMode) var editMode
     @State var image = defaultImage
+    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    
     var body: some View {
+        
         VStack{
             if(editMode?.wrappedValue == .inactive){
                 List {
@@ -27,28 +31,35 @@ struct DetailView: View {
                     else{
                         image.scaledToFit()
                     }
-                    Text("\(location)")
-                    VStack{
-                        Text("Latitude: \(latitude)")
-                        Text("Longitude: \(longitude)")
+                    NavigationLink(destination: MapView(place: place, name: name, latitude: latitude, longitude:longitude)) {
+                        Map(coordinateRegion: $region).frame(width: 50,height: 50)
+                        Text("Map of \(name)")
                     }
+                    Text("\(location)")
                 }
             }else{
                 List{
-                    TextField("New Name:", text: $name)
-                    TextField("Enter image URL", text: $url)
-                    Text("Enter Location Details:").font(.headline)
-                    TextField("Loaction: ", text: $location)
-                    VStack{
-                        HStack{
-                            Text("Latitude: ")
-                            TextField("Latitude: ", text: $latitude)
-                        }
-                        HStack{
-                            Text("Longitude: ")
-                            TextField("Longitude: ", text: $longitude)
-                        }
-                    }
+                    
+//                    TextField("New Name:", text: $name)
+//                    TextField("Enter image URL", text: $url)
+//                    Text("Enter Location Details:").font(.headline)
+//                    TextField("Loaction: ", text: $location)
+//                    VStack{
+//                        HStack{
+//                            Text("Latitude: ")
+//                            TextField("Latitude: ", text: $latitude)
+//                        }
+//                        HStack{
+//                            Text("Longitude: ")
+//                            TextField("Longitude: ", text: $longitude)
+//                        }
+//                    }
+                    TextField("Name: ", text: $name)
+                    TextField("Url: ", text: $url)
+                    Text("Enter Location Details:")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    TextField("Location details: ", text: $location)
                 }
             }
         }
@@ -58,6 +69,8 @@ struct DetailView: View {
             url = place.strUrl
             longitude = place.strLongitude
             latitude = place.strLatitude
+            region.center.longitude = place.longitude
+            region.center.latitude = place.latitude
             saveData()
         }
         .onDisappear(){
