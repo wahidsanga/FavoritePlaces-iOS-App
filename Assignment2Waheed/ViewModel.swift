@@ -101,6 +101,7 @@ func saveData(){
     }
 }
 
+/// function to create a new place instance and store in the database
 func addPlace() {
     let ctx = PersistenceHandler.shared.container.viewContext
     let place = Place(context: ctx)
@@ -111,15 +112,17 @@ func addPlace() {
     saveData()
 }
 
+//default data shown in the app when there is no user data stored
+ let defaultPlaces = [["Japan","Mount fuji","35.3606","138.7274",
+                      "https://www.planetware.com/photos-large/JPN/japan-mt-fuji-and-cherry-blossoms.jpg"],
+                     ["Kashmir","Gulmarg","34.0484","74.3805",
+                      "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/e4/c8/e5.jpg"],
+                     ["Dubai","Burj Khalifa","0","0",
+                      "https://media.tacdn.com/media/attractions-splice-spp-674x446/07/74/81/8c.jpg"]]
+
+/// function to store default data into database
 func loadDefaultData() {
     let ctx = PersistenceHandler.shared.container.viewContext
-    let defaultPlaces = [["Japan","Mount fuji","35.3606","138.7274",
-                          "https://www.planetware.com/photos-large/JPN/japan-mt-fuji-and-cherry-blossoms.jpg"],
-                         ["Kashmir","Gulmarg","34.0484","74.3805",
-                          "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/e4/c8/e5.jpg"],
-                         ["Dubai","Burj Khalifa","0","0",
-                          "https://media.tacdn.com/media/attractions-splice-spp-674x446/07/74/81/8c.jpg"]]
-    
     defaultPlaces.forEach {
         let place = Place(context: ctx)
         place.strName = $0[0]

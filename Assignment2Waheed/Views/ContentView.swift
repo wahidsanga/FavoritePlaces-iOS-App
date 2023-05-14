@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// the master view
+/// the master view shows the list of places, the name of the places and also buttons to add a new place or delete existing places
 struct ContentView: View {
     /// managed object context represents a single object space, or scratch pad, in a Core Data application
     @Environment(\.managedObjectContext) var ctx

@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 import MapKit
 
-
+//overriding MKCoordinateRegion class
 extension MKCoordinateRegion {
     var latStr: String {
         get{
@@ -30,13 +30,14 @@ extension MKCoordinateRegion {
         }
     }
 }
-
+////overriding MKCoordinateRegion class to conform to equatable
 extension MKCoordinateRegion: Equatable {
     public static func == (lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
         lhs.latStr == rhs.latStr && lhs.longStr == rhs.longStr
     }
 }
 
+/// MapView displays the name of the location, its coordinates, as well as an interactive map showing the location.
 struct MapView: View {
     @ObservedObject var place: Place
     @State var name = ""
@@ -98,6 +99,8 @@ struct MapView: View {
             checkMap()
         }
     }
+    
+    /// checkMap function ensures the stored latitude and longitude matches the map latitude and longitude
     func checkMap() {
         latitude = place.strLatitude
         longitude = place.strLongitude
