@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 import MapKit
 
+
 extension MKCoordinateRegion {
     var latStr: String {
         get{
@@ -27,6 +28,12 @@ extension MKCoordinateRegion {
             guard let d = Double(newValue) else {return}
             center.longitude = d
         }
+    }
+}
+
+extension MKCoordinateRegion: Equatable {
+    public static func == (lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
+        lhs.latStr == rhs.latStr && lhs.longStr == rhs.longStr
     }
 }
 
@@ -49,16 +56,11 @@ struct MapView: View {
                 VStack(alignment: .leading){
                     Text("")
                 }
-                
             }
             if(!isEditing){
                 VStack{
                     Text("Latitude: \(latitude) ")
                     Text("longitude: \(longitude)")
-                   // Text("Latitude:\(region.center.latitude)")
-                    //Text("Longitude:\(region.center.longitude)")
-                }.onAppear{
-                    print(place.strLatitude)
                 }
             }
             else{
@@ -66,33 +68,21 @@ struct MapView: View {
                     HStack{
                         Text("latitude: ")
                         TextField("latitude: ", text: $region.latStr)
-                        Button("+"){
-                            print(region.latStr)
-                            latitude=region.latStr
-                        }
                     }
                     HStack{
                         Text("longitude: ")
                         TextField("longitude: ", text: $region.longStr)
-                        Button("+"){
-                            print(region.longStr)
-
-                            longitude=region.longStr
-
-                        }
                     }
-                }
-                .onDisappear{
-                    longitude=region.longStr
-                    latitude=region.latStr
+                }.onChange(of: region) { _ in
+                    latitude = region.latStr
+                    longitude = region.longStr
                 }
             }
         }
         .onAppear{
-            latitude = place.strLatitude
-            longitude = place.strLongitude
-            saveData()
-        }.onDisappear{
+                latitude = place.strLatitude
+                longitude = place.strLongitude
+                saveData()
         }
         .navigationTitle("Map of \(name)")
         .navigationBarItems(trailing: Button("\(isEditing ? "Done" : "Edit")"){
@@ -100,10 +90,6 @@ struct MapView: View {
                 place.strLatitude = latitude
                 place.strLongitude = longitude
                 saveData()
-                place.updateMap()
-                Task {
-                    checkMap()
-                }
             }
             isEditing.toggle()
         })

@@ -30,6 +30,10 @@ struct ContentView: View {
                 .navigationBarItems(leading: Button("+"){
                     addPlace()}, trailing: EditButton())
             }
+        }.task {
+            if(places.count == 0) {
+                    loadDefaultData()
+            }
         }
     }
     

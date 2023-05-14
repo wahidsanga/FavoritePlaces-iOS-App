@@ -110,3 +110,23 @@ func addPlace() {
     place.longitude = 0.0
     saveData()
 }
+
+func loadDefaultData() {
+    let ctx = PersistenceHandler.shared.container.viewContext
+    let defaultPlaces = [["Japan","Mount fuji","35.3606","138.7274",
+                          "https://www.planetware.com/photos-large/JPN/japan-mt-fuji-and-cherry-blossoms.jpg"],
+                         ["Kashmir","Gulmarg","34.0484","74.3805",
+                          "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/e4/c8/e5.jpg"],
+                         ["Dubai","Burj Khalifa","0","0",
+                          "https://media.tacdn.com/media/attractions-splice-spp-674x446/07/74/81/8c.jpg"]]
+    
+    defaultPlaces.forEach {
+        let place = Place(context: ctx)
+        place.strName = $0[0]
+        place.strLocation = $0[1]
+        place.strLatitude = $0[2]
+        place.strLongitude = $0[3]
+        place.strUrl = $0[4]
+    }
+    saveData()
+}
