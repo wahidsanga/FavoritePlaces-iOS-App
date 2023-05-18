@@ -39,21 +39,6 @@ struct DetailView: View {
                 }
             }else{
                 List{
-                    
-//                    TextField("New Name:", text: $name)
-//                    TextField("Enter image URL", text: $url)
-//                    Text("Enter Location Details:").font(.headline)
-//                    TextField("Loaction: ", text: $location)
-//                    VStack{
-//                        HStack{
-//                            Text("Latitude: ")
-//                            TextField("Latitude: ", text: $latitude)
-//                        }
-//                        HStack{
-//                            Text("Longitude: ")
-//                            TextField("Longitude: ", text: $longitude)
-//                        }
-//                    }
                     TextField("Name: ", text: $name)
                     TextField("Url: ", text: $url)
                     Text("Enter Location Details:")
@@ -62,6 +47,13 @@ struct DetailView: View {
                     TextField("Location details: ", text: $location)
                 }
             }
+            HStack{
+                Image(systemName: "sunrise")
+                place.SunriseView
+                Spacer()
+                Image(systemName: "sunrise")
+                place.SunsetView
+            }.padding()
         }
         .onAppear(){
             name = place.strName

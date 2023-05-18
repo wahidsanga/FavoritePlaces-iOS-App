@@ -133,3 +133,102 @@ func loadDefaultData() {
     }
     saveData()
 }
+
+
+struct MyTimeZone: Decodable{
+    var timeZone:String
+}
+
+struct SunriseSunset:Decodable {
+    var sunrise:String
+    var sunset:String
+}
+
+struct SunriseSunsetAPI:Decodable {
+    var results: SunriseSunset
+}
+
+extension Place{
+//    @Published var sunrise: String?
+//    @Published var sunset: String?
+    func fetchSunriseSunset() {
+        let urlStr="https://api.sunrise-sunset.org/json?lat=\(self.strLatitude)&lng=\(self.strLongitude)"
+        guard let url=URL(string: urlStr) else {return}
+        let request=URLRequest(url: url)
+        URLSession.shared.dataTask(with: request){ data, _, _ in
+            guard let data = data,
+                  let api=try? JSONDecoder().decode(SunriseSunsetAPI.self, from: data)
+            else {return}  //need timezone struct
+            DispatchQueue.main.async {
+                self.sunrise=api.results.sunrise
+                self.sunset=api.results.sunset
+            }
+        }.resume()
+    }
+    
+    func fetchTimeZone() {
+        let urlStr="https://timeapi.io/api/TimeZone/coordinate?latitude=\(self.strLatitude)&longitude=\(self.strLongitude)"
+        guard let url=URL(string: urlStr) else {return}
+        let request=URLRequest(url: url)
+        URLSession.shared.dataTask(with: request){ data, _, _ in
+            guard let data = data,
+                  let api=try? JSONDecoder().decode(MyTimeZone.self, from: data)
+            else {return}  //need timezone struct
+            DispatchQueue.main.async {
+                self.timeZone = api.timeZone
+            }
+        }.resume()
+    }
+    var timeZoneView: some View{
+        HStack{
+            Text("TimeZone: ")
+            if let tz=self.timeZone {
+                Text(tz)
+            }else{
+                    ProgressView()
+                }
+        }
+    }
+    var SunriseView: some View{
+        HStack{
+            Text("Sunrise: ")
+            if let tm = self.sunrise {
+                if let tz = self.timeZone {
+                    let ltm = self.getLocalTimeFromGMT(tm, tz)
+                    Text("GMT:\(tm) Loc:\(ltm)")
+                }else{
+                    Text("GMT:\(tm)")
+                }
+            }else{
+                    ProgressView()
+            }
+        }
+    }
+    var SunsetView: some View{
+        HStack{
+            Text("Sunset: ")
+            if let tz=self.sunset {
+                Text(tz)
+            }else{
+                    ProgressView()
+            }
+        }
+    }
+    
+    func getLocalTimeFromGMT (_ tm:String, _ tz:String) -> String  {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateStyle = .none
+        inputFormatter.timeStyle = .medium
+        inputFormatter.timeZone = .init(secondsFromGMT:0)
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateStyle = .none
+        outputFormatter.timeStyle = .medium
+        outputFormatter.timeZone = TimeZone(identifier: tz)
+        
+        if let time=inputFormatter.date(from: tm) {
+            return outputFormatter.string(from: time)
+        }
+            return ""
+    }
+}
