@@ -89,6 +89,21 @@ extension Place{
         region.center.latitude = latitude
         region.center.longitude = longitude
     }
+    
+    func fromLocToAddress() {
+        let coder = CLGeocoder()
+        coder.reverseGeocodeLocation(CLLocation(latitude: latitude, longitude: longitude)) { marks, error in
+            if let err = error {
+                print("error in fromLocToAddress: \(err)")
+                return
+            }
+            guard let mark = marks?.first else {
+                print("can't find primary placemark in loc to address")
+                return
+            }
+            self.name = mark.name ?? mark.country ?? mark.locality ?? mark.administrativeArea ?? "No name"
+        }
+    }
 }
 
 /// function to save data to the database
@@ -149,10 +164,9 @@ struct SunriseSunsetAPI:Decodable {
 }
 
 extension Place{
-//    @Published var sunrise: String?
-//    @Published var sunset: String?
     func fetchSunriseSunset() {
-        let urlStr="https://api.sunrise-sunset.org/json?lat=\(self.strLatitude)&lng=\(self.strLongitude)"
+        //"https://api.sunrise-sunset.org/json?lat=\(self.strLatitude)&lng=\(self.strLongitude)"
+        let urlStr="https://api.sunrise-sunset.org/json?lat=\(self.strLatitude)&lng=\(self.strLongitude)&date=today"
         guard let url=URL(string: urlStr) else {return}
         let request=URLRequest(url: url)
         URLSession.shared.dataTask(with: request){ data, _, _ in
@@ -167,7 +181,7 @@ extension Place{
     }
     
     func fetchTimeZone() {
-        let urlStr="https://timeapi.io/api/TimeZone/coordinate?latitude=\(self.strLatitude)&longitude=\(self.strLongitude)"
+        let urlStr="https://timeapi.io/api/TimeZone/coordinate?latitude=\(self.latitude)&longitude=\(self.longitude)"
         guard let url=URL(string: urlStr) else {return}
         let request=URLRequest(url: url)
         URLSession.shared.dataTask(with: request){ data, _, _ in
@@ -191,12 +205,12 @@ extension Place{
     }
     var SunriseView: some View{
         HStack{
-            Text("Sunrise: ")
             if let tm = self.sunrise {
                 if let tz = self.timeZone {
                     let ltm = self.getLocalTimeFromGMT(tm, tz)
-                    Text("GMT:\(tm) Loc:\(ltm)")
-                }else{
+                    Text("\(ltm)")
+                }
+                else{
                     Text("GMT:\(tm)")
                 }
             }else{
@@ -206,9 +220,14 @@ extension Place{
     }
     var SunsetView: some View{
         HStack{
-            Text("Sunset: ")
-            if let tz=self.sunset {
-                Text(tz)
+            if let tm = self.sunset {
+                if let tz = self.timeZone {
+                    let ltm = self.getLocalTimeFromGMT(tm, tz)
+                    Text("\(ltm)")
+                }
+                else{
+                    Text("GMT:\(tm)")
+                }
             }else{
                     ProgressView()
             }
@@ -232,3 +251,4 @@ extension Place{
             return ""
     }
 }
+

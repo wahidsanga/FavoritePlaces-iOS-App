@@ -49,41 +49,74 @@ struct MapView: View {
                                            span: MKCoordinateSpan(latitudeDelta: 10.0, longitudeDelta: 10.0))
     
 
+
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text(name)
+            HStack{
+                if(isEditing){
+                    Image(systemName: "magnifyingglass.circle")
+                        .onTapGesture {
+                            place.fromLocToAddress()
+                            name=place.strName
+                            saveData()
+                    }
+                    TextField("location name: ", text: $name)
+                }
+                else{
+                    Text(name)
+                }
+            } .onChange(of: name) { _ in
+                place.strName=name
+                saveData()
+            }
             ZStack{
-                Map(coordinateRegion: $region)  //adds map
+                /// map showing
+                Map(coordinateRegion: $region)
                 VStack(alignment: .leading){
                     Text("")
                 }
             }
             if(!isEditing){
                 VStack{
-                    Text("Latitude: \(latitude) ")
-                    Text("longitude: \(longitude)")
+                    Text("Latitude:\(latitude)")
+                    Text("Longitude:\(longitude)")
                 }
             }
             else{
-                VStack{
-                    HStack{
-                        Text("latitude: ")
-                        TextField("latitude: ", text: $region.latStr)
+                HStack{
+                    Image(systemName: "globe").foregroundColor(Color.blue)
+                        .onTapGesture {
+                        fromAddressToLoc()
                     }
-                    HStack{
-                        Text("longitude: ")
-                        TextField("longitude: ", text: $region.longStr)
+                    VStack{
+                        HStack{
+                            Text("latitude: ")
+                            TextField("latitude: ", text: $region.latStr)
+                        }
+                        HStack{
+                            Text("longitude: ")
+                            TextField("longitude: ", text: $region.longStr)
+                        }
                     }
-                }.onChange(of: region) { _ in
+                }
+                /// to change the value of latitude and longitude after updating
+                .onChange(of: region) { _ in
                     latitude = region.latStr
                     longitude = region.longStr
                 }
             }
-        }
-        .onAppear{
-                latitude = place.strLatitude
-                longitude = place.strLongitude
-                saveData()
+        }.onAppear{
+            region.center.latitude = place.latitude
+            region.center.longitude = place.longitude
+            latitude = place.strLatitude
+            longitude = place.strLongitude
+            saveData()
+        }.onDisappear{
+            place.latitude = region.center.latitude
+            place.longitude = region.center.longitude
+            place.name = name
+            saveData()
         }
         .navigationTitle("Map of \(name)")
         .navigationBarItems(trailing: Button("\(isEditing ? "Done" : "Edit")"){
@@ -91,6 +124,10 @@ struct MapView: View {
                 place.strLatitude = latitude
                 place.strLongitude = longitude
                 saveData()
+                place.updateMap()
+                Task {
+                    checkMap()
+                }
             }
             isEditing.toggle()
         })
@@ -99,12 +136,27 @@ struct MapView: View {
             checkMap()
         }
     }
-    
-    /// checkMap function ensures the stored latitude and longitude matches the map latitude and longitude
+    /// function to checkmap and update
     func checkMap() {
         latitude = place.strLatitude
         longitude = place.strLongitude
         region.center.latitude = place.latitude
         region.center.longitude = place.longitude
     }
+    func fromAddressToLoc() {
+        let coder = CLGeocoder()
+        coder.geocodeAddressString(name) { marks, error in
+            if let err = error {
+                print("errof in fromAddressToLoc \(err)")
+                return
+            }
+            guard let pmk = marks?.first else {
+                print("can't find primary placemark in address to loc")
+                return
+            }
+            region.center.latitude = pmk.location?.coordinate.latitude ?? 0.0
+            region.center.longitude = pmk.location?.coordinate.longitude ?? 0.0
+        }
+    }
 }
+

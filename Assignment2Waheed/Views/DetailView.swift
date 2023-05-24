@@ -51,10 +51,16 @@ struct DetailView: View {
                 Image(systemName: "sunrise")
                 place.SunriseView
                 Spacer()
-                Image(systemName: "sunrise")
+                Image(systemName: "sunrise.fill")
                 place.SunsetView
+//                Image(systemName: "sunrise.fill")
+//                place.timeZoneView
             }.padding()
         }
+//        .task {
+//            place.fetchSunriseSunset()
+//            
+//        }
         .onAppear(){
             name = place.strName
             location = place.strLocation
@@ -77,6 +83,9 @@ struct DetailView: View {
         .navigationBarItems(trailing: EditButton())
         .task {
             await image = place.getImage()
+            place.fetchTimeZone()
+            place.fetchSunriseSunset()
+            
         }
     }
 }
