@@ -15,6 +15,7 @@ Additional requirements covered are:
 -When there are no saved data, the list contains at least three complete demo entries as default data.
 -Use of best practice when designing the User Interfaces is done. E.g. the user interface works on differently sized devices, with relevant font settings, emphasis, spacing, separators, drop shadows.
 -A video link has been provided demonstrating the full working of the app along with unit testing.
+link: https://griffitheduau-my.sharepoint.com/:v:/r/personal/waheed_hasan_griffithuni_edu_au/Documents/Recordings/mad-20230528_224335-Meeting%20Recording.mp4?csf=1&web=1&e=zZdpUL
 
 ## Topics
 
