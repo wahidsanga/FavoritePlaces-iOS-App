@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E4CC7E52A1E10B90098542E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC7E42A1E10B90098542E /* Documentation.docc */; };
 		3EB5A48C2A0811D3007D07A0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5A48B2A0811D3007D07A0 /* MapView.swift */; };
 		3EE429E229FC20F000DFFA19 /* Assignment2Waheed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE429E129FC20F000DFFA19 /* Assignment2Waheed.swift */; };
 		3EE429E429FC20F000DFFA19 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE429E329FC20F000DFFA19 /* ContentView.swift */; };
@@ -20,7 +21,6 @@
 		3EE42A1129FC307600DFFA19 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A1029FC307600DFFA19 /* ViewModel.swift */; };
 		3EE42A1329FC32FF00DFFA19 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A1229FC32FF00DFFA19 /* DetailView.swift */; };
 		3EE42A1529FD30C100DFFA19 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A1429FD30C100DFFA19 /* RowView.swift */; };
-		3EE42A1829FE3BD100DFFA19 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3EE42A1729FE3BD100DFFA19 /* Documentation.docc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E4CC7E42A1E10B90098542E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		3EB5A48B2A0811D3007D07A0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		3EE429DE29FC20F000DFFA19 /* FavouritePlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FavouritePlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE429E129FC20F000DFFA19 /* Assignment2Waheed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2Waheed.swift; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		3EE42A1029FC307600DFFA19 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		3EE42A1229FC32FF00DFFA19 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		3EE42A1429FD30C100DFFA19 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
-		3EE42A1729FE3BD100DFFA19 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +88,7 @@
 		3EE429D529FC20F000DFFA19 = {
 			isa = PBXGroup;
 			children = (
+				3E4CC7E42A1E10B90098542E /* Documentation.docc */,
 				3EE429E029FC20F000DFFA19 /* Assignment2Waheed */,
 				3EE429F129FC20F200DFFA19 /* FavouritePlacesTests */,
 				3EE429FB29FC20F200DFFA19 /* FavouritePlacesUITests */,
@@ -113,9 +114,8 @@
 				3EE429E529FC20F200DFFA19 /* Assets.xcassets */,
 				3EE429E729FC20F200DFFA19 /* Preview Content */,
 				3EE42A0B29FC2C9B00DFFA19 /* Model.xcdatamodeld */,
-				3EE42A0E29FC2E2D00DFFA19 /* Persistence.swift */,
 				3EE42A1029FC307600DFFA19 /* ViewModel.swift */,
-				3EE42A1729FE3BD100DFFA19 /* Documentation.docc */,
+				3EE42A0E29FC2E2D00DFFA19 /* Persistence.swift */,
 			);
 			path = Assignment2Waheed;
 			sourceTree = "<group>";
@@ -289,8 +289,8 @@
 				3EE42A1129FC307600DFFA19 /* ViewModel.swift in Sources */,
 				3EE42A1329FC32FF00DFFA19 /* DetailView.swift in Sources */,
 				3EE42A1529FD30C100DFFA19 /* RowView.swift in Sources */,
-				3EE42A1829FE3BD100DFFA19 /* Documentation.docc in Sources */,
 				3EE429E429FC20F000DFFA19 /* ContentView.swift in Sources */,
+				3E4CC7E52A1E10B90098542E /* Documentation.docc in Sources */,
 				3EE42A0F29FC2E2D00DFFA19 /* Persistence.swift in Sources */,
 				3EE429E229FC20F000DFFA19 /* Assignment2Waheed.swift in Sources */,
 				3EB5A48C2A0811D3007D07A0 /* MapView.swift in Sources */,

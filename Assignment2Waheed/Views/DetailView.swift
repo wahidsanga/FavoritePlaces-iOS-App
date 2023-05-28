@@ -9,17 +9,27 @@ import SwiftUI
 import CoreData
 import MapKit
 /// the DetailView displays all the data associated with a place including its description, image url, latitude and longitude
+/// - Parameters:
+///   - place:An observed object representing a Place instance.
+///   - name: A state variable holding the name of the place.
+///   - location: A state variable holding the location details of the place.
+///   - url: A state variable holding the url details of a landmark in a place.
+///   - longitude: A state variable holding the longitude of the place.
+///   - latitude: A state variable holding the latitude of the place.
+///   - image: A state variable holding the image associated with a landmark of the place.
+///   - region: A state variable holding the coordinate region for the map view. It is used to specify the centre and span of the map view.
 struct DetailView: View {
     @ObservedObject var place: Place
     @State var name = ""
     @State var location = ""
     @State var url = ""
-    @State var longitude = ""
-    @State var latitude = ""
+    @State var longitude = "0.0"
+    @State var latitude = "0.0"
     @Environment(\.editMode) var editMode
     @State var image = defaultImage
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
+    /// A SwiftUI view representing the detail view of a place.
     var body: some View {
         
         VStack{

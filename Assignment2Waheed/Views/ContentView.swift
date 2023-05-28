@@ -37,7 +37,11 @@ struct ContentView: View {
         }
     }
     
-    /// this function adds a new Place instance and saves in in the database
+        /// This function adds a new `Place` instance and saves it in the database.
+        /// Example usage:
+        /// ```
+        /// addPlace()
+        /// ```
     func addPlace(){
         let place=Place(context: ctx)
         place.name="New Place"

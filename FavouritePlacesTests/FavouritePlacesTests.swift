@@ -17,13 +17,17 @@ final class FavouritePlacesTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
+    /// The testExample() function is a test case that verifies specific conditions using assertions.
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        // Get the defaultPlaces array
+        let p = defaultPlaces
+        
+        // Assert that the defaultPlaces array is not nil
+        XCTAssertNotNil(p)
+        
+        // Assert that the first element of the first sublist in the defaultPlaces array is "Japan"
+        XCTAssert(p[0][0] == "Japan")
     }
 
     func testPerformanceExample() throws {

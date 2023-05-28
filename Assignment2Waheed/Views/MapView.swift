@@ -38,6 +38,14 @@ extension MKCoordinateRegion: Equatable {
 }
 
 /// MapView displays the name of the location, its coordinates, as well as an interactive map showing the location.
+/// - Parameters:
+///   - place:An observed object representing a Place instance.
+///   - name: A state variable holding the name of the place.
+///   - isEditing: A state variable holding a boolean value.
+///   - delta: A state variable holding the url details of a landmark in a place.
+///   - longitude: A state variable holding the longitude of the place.
+///   - latitude: A state variable holding the latitude of the place.
+///   - region: A state variable holding the coordinate region for the map view. It is used to specify the centre and span of the map view.
 struct MapView: View {
     @ObservedObject var place: Place
     @State var name = ""
